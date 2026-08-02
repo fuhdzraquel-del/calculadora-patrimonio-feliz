@@ -23,7 +23,7 @@ function generarResumen() {
     pagoPeriodo = mensual / 2;
   }
 
-  // Años y Meses
+  // Años y Meses desglosados
   const anios = Math.floor(meses / 12);
   const mesesRestantes = meses % 12;
   let tiempoTexto = "";
@@ -65,7 +65,7 @@ function generarResumen() {
     <div style="background:#002349; color:white; border-radius:30px; padding:10px 20px; display:flex; align-items:center; gap:15px; margin-bottom:20px;">
       <div style="background:white; color:#002349; width:26px; height:26px; border-radius:50%; font-weight:bold; font-style:italic; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;">i</div>
       <div style="font-size:13.5px; line-height:1.2; font-weight:500;">
-        Este resumen te muestra de forma clara cuánto recibirás, cuánto pagarás y los costos del trámite.
+        Este resumen te muestra de forma clara cuánto recibirás, cuánto pagarás y los costos del trámite para <b>${cliente}</b>.
       </div>
     </div>
 
@@ -175,7 +175,6 @@ function generarResumen() {
     <!-- Bloque Desglose de Costos -->
     <div style="border:2px solid #002349; border-radius:18px; margin-top:20px; position:relative;">
       
-      <!-- Pestaña título azul -->
       <div style="background:#002349; color:white; padding:6px 20px; border-radius:12px 0 12px 0; font-size:15px; font-weight:bold; display:inline-block;">
         Desglose de Costos del Trámite
       </div>
