@@ -17,7 +17,17 @@ const credito=parseFloat(document.getElementById("credito").value)||0;
 
 const mensual=parseFloat(document.getElementById("mensual").value)||0;
 
-const periodo=parseFloat(document.getElementById("semanal").value)||0;
+let periodo = 0;
+
+if(tipoPago=="Semanal"){
+    periodo = mensual / 4;
+}
+else if(tipoPago=="Quincenal"){
+    periodo = mensual / 2;
+}
+else{
+    periodo = mensual;
+}
 
 const meses=parseFloat(document.getElementById("meses").value)||0;
 
