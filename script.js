@@ -234,7 +234,7 @@ font-weight:bold;
 color:#1F8A45;
 margin-top:8px;
 ">
-${dinero(periodo)}
+${dinero(pagoPeriodo)}
 </div>
 
 </div>
