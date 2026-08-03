@@ -1,100 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Calculadora Patrimonio Feliz</title>
-
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Patrimonio Feliz</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Librería gratuita para convertir HTML a Imagen -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
-
 <body>
 
-<div class="contenedor">
+  <div class="contenedor">
+    <div class="formulario">
+      <h2>Calculadora de Trámite Infonavit</h2>
+      
+      <div class="fila">
+        <label for="cliente">Nombre del Cliente:</label>
+        <input type="text" id="cliente" placeholder="Ej. Juan Pérez">
+      </div>
 
-<header>
+      <div class="fila">
+        <label for="subcuenta">Saldo en Subcuenta de Vivienda ($):</label>
+        <input type="number" id="subcuenta" value="34980.44">
+      </div>
 
-<img src="logo.png" class="logo">
+      <div class="fila">
+        <label for="credito">Crédito Autorizado ($):</label>
+        <input type="number" id="credito" value="31482.39">
+      </div>
 
-<h1>Resumen Financiero Infonavit</h1>
+      <div class="fila">
+        <label for="mensual">Pago Mensual ($):</label>
+        <input type="number" id="mensual" value="668.94">
+      </div>
 
-<p>Patrimonio Feliz</p>
+      <div class="fila">
+        <label for="tipoPago">Frecuencia de Pago:</label>
+        <select id="tipoPago">
+          <option value="Semanal">Semanal</option>
+          <option value="Quincenal">Quincenal</option>
+          <option value="Mensual">Mensual</option>
+        </select>
+      </div>
 
-</header>
+      <div class="fila">
+        <label for="meses">Plazo Real (Meses):</label>
+        <input type="number" id="meses" value="26">
+      </div>
 
-<section class="formulario">
+      <div class="fila">
+        <label for="honorarios">Porcentaje de Honorarios (%):</label>
+        <input type="number" id="honorarios" value="15">
+      </div>
 
-<h2>Datos del Cliente</h2>
+      <div class="fila">
+        <label for="originacion">Gastos de Originación ($):</label>
+        <input type="number" id="originacion" value="4500">
+      </div>
 
-<div class="fila">
-<label>Nombre del Cliente</label>
-<input type="text" id="cliente">
-</div>
+      <button onclick="generarResumen()">GENERAR INFOGRAFÍA</button>
+    </div>
 
-<div class="fila">
-<label>Saldo en Subcuenta</label>
-<input type="number" id="subcuenta">
-</div>
+    <!-- Aquí se mostrará la infografía y el botón de descarga -->
+    <div id="resultado"></div>
+  </div>
 
-<div class="fila">
-<label>Crédito Autorizado</label>
-<input type="number" id="credito">
-</div>
-
-<div class="fila">
-<label>Pago Mensual</label>
-<input type="number" id="mensual">
-</div>
-
-<div class="fila">
-<label>Tipo de Pago</label>
-
-<select id="tipoPago">
-
-<option value="Semanal">Semanal</option>
-
-<option value="Quincenal">Quincenal</option>
-
-<option value="Mensual">Mensual</option>
-
-</select>
-
-</div>
-
-<div class="fila">
-<label>Meses</label>
-<input type="number" id="meses">
-</div>
-
-<div class="fila">
-<label>Honorarios (%)</label>
-<input type="number" id="honorarios" value="15">
-</div>
-
-<div class="fila">
-<label>Gastos de Originación</label>
-<input type="number" id="originacion" value="4500">
-</div>
-
-<button onclick="generarResumen()">
-
-GENERAR INFOGRAFÍA
-
-</button>
-
-</section>
-
-<section id="resultado">
-
-</section>
-
-</div>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
-
 </html>
+
