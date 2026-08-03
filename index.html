@@ -5,33 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Patrimonio Feliz</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Librería gratuita para convertir HTML a Imagen -->
+  <!-- Librería para descargar la infografía -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
   <div class="contenedor">
-    <div class="formulario">
+    <form class="formulario" onsubmit="return false;" autocomplete="off">
       <h2>Calculadora de Trámite Infonavit</h2>
       
       <div class="fila">
         <label for="cliente">Nombre del Cliente:</label>
-        <input type="text" id="cliente" placeholder="Ej. Juan Pérez">
+        <input type="text" id="cliente" placeholder="Ej. Juan Pérez" value="">
       </div>
 
       <div class="fila">
         <label for="subcuenta">Saldo en Subcuenta de Vivienda ($):</label>
-        <input type="number" id="subcuenta" value="34980.44">
+        <input type="number" id="subcuenta" placeholder="0.00" value="">
       </div>
 
       <div class="fila">
         <label for="credito">Crédito Autorizado ($):</label>
-        <input type="number" id="credito" value="31482.39">
+        <input type="number" id="credito" placeholder="0.00" value="">
       </div>
 
       <div class="fila">
         <label for="mensual">Pago Mensual ($):</label>
-        <input type="number" id="mensual" value="668.94">
+        <input type="number" id="mensual" placeholder="0.00" value="">
       </div>
 
       <div class="fila">
@@ -45,9 +45,10 @@
 
       <div class="fila">
         <label for="meses">Plazo Real (Meses):</label>
-        <input type="number" id="meses" value="26">
+        <input type="number" id="meses" placeholder="Ej. 26" value="">
       </div>
 
+      <!-- ÚNICOS CAMPOS PRELLENADOS (ESTÁNDAR) -->
       <div class="fila">
         <label for="honorarios">Porcentaje de Honorarios (%):</label>
         <input type="number" id="honorarios" value="15">
@@ -58,14 +59,13 @@
         <input type="number" id="originacion" value="4500">
       </div>
 
-      <button onclick="generarResumen()">GENERAR INFOGRAFÍA</button>
-    </div>
+      <button type="button" onclick="generarResumen()">GENERAR INFOGRAFÍA</button>
+    </form>
 
-    <!-- Aquí se mostrará la infografía y el botón de descarga -->
+    <!-- Área de la infografía generada -->
     <div id="resultado"></div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
