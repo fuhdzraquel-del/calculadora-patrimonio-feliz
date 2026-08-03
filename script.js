@@ -169,7 +169,7 @@ function generarResumen() {
       </tr>
     </table>
 
-    <!-- Desglose de Costos (Diseño Original Intacto) -->
+    <!-- Desglose de Costos -->
     <div style="border:2px solid #002349; border-radius:16px; margin-top:18px;">
       <div style="background:#002349; color:white; padding:5px 18px; border-radius:10px 0 10px 0; font-size:14px; font-weight:bold; display:inline-block;">
         Desglose de Costos del Trámite
@@ -234,13 +234,13 @@ function generarResumen() {
       </div>
     </div>
 
-    <!-- CÍRCULO REDUCIDO A 160px CON LETRAS MÁS GRANDES Y PROPORCIONALES -->
+    <!-- CÍRCULO CON LETRAS Y MONTOS MÁS GRANDES Y VISIBLES -->
     <div class="circle-summary" style="position: absolute; right: 20px; bottom: 15px; width: 160px; height: 160px; border-width: 3px;">
-      <div style="font-size: 15px; font-weight: 800; color: #002349; line-height: 1.1;">Recibes:</div>
-      <div style="font-size: 21px; font-weight: 900; color: #287a38; margin: 1px 0;">${dinero(recibe)}</div>
-      <div style="width: 80%; height: 2px; background: #287a38; margin: 3px 0;"></div>
-      <div style="font-size: 13px; font-weight: 800; color: #002349; line-height: 1.1;">Pagas solo:</div>
-      <div style="font-size: 18px; font-weight: 900; color: #287a38;">${dinero(totalPagado)}</div>
+      <div style="font-size: 17px; font-weight: 800; color: #002349; line-height: 1.1;">Recibes:</div>
+      <div style="font-size: 25px; font-weight: 900; color: #287a38; margin: 1px 0;">${dinero(recibe)}</div>
+      <div style="width: 80%; height: 2px; background: #287a38; margin: 2px 0;"></div>
+      <div style="font-size: 15px; font-weight: 800; color: #002349; line-height: 1.1;">Pagas solo:</div>
+      <div style="font-size: 22px; font-weight: 900; color: #287a38;">${dinero(totalPagado)}</div>
     </div>
 
     <!-- Pie de página -->
