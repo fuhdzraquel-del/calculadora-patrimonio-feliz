@@ -66,7 +66,7 @@ function generarResumen() {
   </div>
 
   <!-- INFOGRAFÍA PARA EL CLIENTE -->
-  <div id="infografia-para-descargar" class="infografia-canvas">
+  <div id="infografia-para-descargar" class="infografia-canvas" style="position: relative;">
     
     <!-- Encabezado -->
     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:15px;">
@@ -169,54 +169,54 @@ function generarResumen() {
       </tr>
     </table>
 
-    <!-- Desglose de Costos con ambas restas explicadas -->
-    <div style="border:2px solid #002349; border-radius:16px; margin-top:18px;">
+    <!-- Desglose de Costos (Ancho limitado al 62% para dejar espacio libre a la derecha) -->
+    <div style="border:2px solid #002349; border-radius:16px; margin-top:18px; width:62%;">
       <div style="background:#002349; color:white; padding:5px 18px; border-radius:10px 0 10px 0; font-size:14px; font-weight:bold; display:inline-block;">
         Desglose de Costos del Trámite
       </div>
 
       <table class="tabla-infografia" style="margin-top:5px;">
         <tr>
-          <td class="col-1" style="border-bottom:1px dashed #ccc;">
+          <td class="col-1" style="border-bottom:1px dashed #ccc; width:40%;">
             <div class="flex-title">
               <div class="icon-circle" style="border-color:#c5221f; color:#c5221f;">%</div>
               <div>
-                <b style="color:#c5221f; font-size:13px;">Menos Honorarios de Gestión (${porcentaje}%)</b>
-                <div style="font-size:11px; color:#666;">Armado de expediente, asesoría y trámite.</div>
+                <b style="color:#c5221f; font-size:12px;">Menos Honorarios de Gestión (${porcentaje}%)</b>
+                <div style="font-size:10px; color:#666;">Armado de expediente y trámite.</div>
               </div>
             </div>
           </td>
-          <td class="col-2" style="border-bottom:1px dashed #ccc;"><div class="monto-red">-${dinero(honorarios)}</div></td>
-          <td class="col-3" style="border-bottom:1px dashed #ccc;">
-            <div style="background:#fce8e6; border-radius:8px; padding:6px 8px; text-align:center;">
-              <div style="font-size:11px; color:#c5221f; font-weight:bold;">${dinero(credito)} - ${dinero(honorarios)} =</div>
-              <div style="font-size:18px; font-weight:800; color:#c5221f;">${dinero(netoCredito)}</div>
+          <td class="col-2" style="border-bottom:1px dashed #ccc; width:25%;"><div class="monto-red">-${dinero(honorarios)}</div></td>
+          <td class="col-3" style="border-bottom:1px dashed #ccc; width:35%;">
+            <div style="background:#fce8e6; border-radius:8px; padding:5px 6px; text-align:center;">
+              <div style="font-size:10px; color:#c5221f; font-weight:bold;">${dinero(credito)} - ${dinero(honorarios)} =</div>
+              <div style="font-size:16px; font-weight:800; color:#c5221f;">${dinero(netoCredito)}</div>
             </div>
           </td>
         </tr>
 
         <tr>
-          <td class="col-1" style="border-bottom:none;">
+          <td class="col-1" style="border-bottom:none; width:40%;">
             <div class="flex-title">
               <div class="icon-circle" style="border-color:#c5221f; color:#c5221f;">👛</div>
               <div>
-                <b style="color:#c5221f; font-size:13px;">Menos Gastos de Originación</b>
-                <div style="font-size:11px; color:#666;">Inscripción del trámite ante la institución.</div>
+                <b style="color:#c5221f; font-size:12px;">Menos Gastos de Originación</b>
+                <div style="font-size:10px; color:#666;">Inscripción del trámite.</div>
               </div>
             </div>
           </td>
-          <td class="col-2" style="border-bottom:none;"><div class="monto-red">-${dinero(originacion)}</div></td>
-          <td class="col-3" style="border-bottom:none;">
-            <div style="background:#fce8e6; border-radius:8px; padding:6px 8px; text-align:center;">
-              <div style="font-size:11px; color:#c5221f; font-weight:bold;">${dinero(netoCredito)} - ${dinero(originacion)} =</div>
-              <div style="font-size:18px; font-weight:800; color:#287a38;">${dinero(recibe)}</div>
+          <td class="col-2" style="border-bottom:none; width:25%;"><div class="monto-red">-${dinero(originacion)}</div></td>
+          <td class="col-3" style="border-bottom:none; width:35%;">
+            <div style="background:#fce8e6; border-radius:8px; padding:5px 6px; text-align:center;">
+              <div style="font-size:10px; color:#c5221f; font-weight:bold;">${dinero(netoCredito)} - ${dinero(originacion)} =</div>
+              <div style="font-size:16px; font-weight:800; color:#287a38;">${dinero(recibe)}</div>
             </div>
           </td>
         </tr>
       </table>
     </div>
 
-    <!-- Sección Inferior + Círculo -->
+    <!-- Sección Inferior (Ancho 62%) -->
     <div style="margin-top:18px; width:62%;">
       <div style="background:#002349; color:white; border-radius:12px; padding:4px 12px; display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:bold; margin-bottom:10px;">
         ✓ En resumen:
@@ -234,8 +234,8 @@ function generarResumen() {
       </div>
     </div>
 
-    <!-- Círculo Verde Derecha -->
-    <div class="circle-summary">
+    <!-- Círculo Verde Ubicado de Forma Segura en el Lateral Derecha Inferior -->
+    <div class="circle-summary" style="position: absolute; right: 25px; bottom: 35px;">
       <div style="font-size:17px; font-weight:800; color:#002349;">Recibes:</div>
       <div style="font-size:25px; font-weight:900; color:#287a38; margin:2px 0;">${dinero(recibe)}</div>
       <div style="width:75%; height:2px; background:#287a38; margin:4px 0;"></div>
