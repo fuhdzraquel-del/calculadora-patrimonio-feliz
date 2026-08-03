@@ -6,7 +6,6 @@ function dinero(numero) {
 }
 
 function generarResumen() {
-  // 1. Lectura de campos del formulario
   const cliente = document.getElementById("cliente") ? document.getElementById("cliente").value : "Cliente";
   const subcuenta = parseFloat(document.getElementById("subcuenta") ? document.getElementById("subcuenta").value : 0) || 0;
   const credito = parseFloat(document.getElementById("credito") ? document.getElementById("credito").value : 0) || 0;
@@ -16,7 +15,6 @@ function generarResumen() {
   const porcentaje = parseFloat(document.getElementById("honorarios") ? document.getElementById("honorarios").value : 15) || 15;
   const originacion = parseFloat(document.getElementById("originacion") ? document.getElementById("originacion").value : 4500) || 4500;
 
-  // 2. Cálculos financieros rápidos
   let pagoPeriodo = mensual;
   if (tipoPago === "Semanal") pagoPeriodo = mensual / 4;
   if (tipoPago === "Quincenal") pagoPeriodo = mensual / 2;
@@ -36,9 +34,16 @@ function generarResumen() {
   const recibe = credito - honorarios - originacion;
   const totalPagado = mensual * meses;
 
-  // 3. Renderizado de la Infografía
   const html = `
-  <div class="infografia-canvas">
+  <!-- BOTÓN DE DESCARGA -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <button onclick="descargarImagen()" style="background: #287a38; max-width: 350px; font-size: 18px; padding: 14px; border-radius: 10px;">
+      📥 DESCARGAR IMAGEN
+    </button>
+  </div>
+
+  <!-- INFOGRAFÍA PARA EL CLIENTE -->
+  <div id="infografia-para-descargar" class="infografia-canvas">
     
     <!-- Encabezado -->
     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:15px;">
@@ -60,7 +65,7 @@ function generarResumen() {
       </div>
     </div>
 
-    <!-- Tabla Principal de Filas -->
+    <!-- Tabla Principal -->
     <table class="tabla-infografia">
       <tr>
         <td class="col-1">
@@ -217,4 +222,22 @@ function generarResumen() {
   if (contenedorResultado) {
     contenedorResultado.innerHTML = html;
   }
+}
+
+// FUNCIÓN PARA DESCARGAR COMO IMAGEN PNG
+function descargarImagen() {
+  const elemento = document.getElementById("infografia-para-descargar");
+  const cliente = document.getElementById("cliente") ? document.getElementById("cliente").value : "Cliente";
+
+  if (!elemento) return;
+
+  html2canvas(elemento, {
+    scale: 2, // Alta resolución para que se vea nítida
+    useCORS: true
+  }).then(canvas => {
+    const enlace = document.createElement("a");
+    enlace.download = `Resumen_Infonavit_${cliente.replace(/\s+/g, '_')}.png`;
+    enlace.href = canvas.toDataURL("image/png");
+    enlace.click();
+  });
 }
