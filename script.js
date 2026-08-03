@@ -5,7 +5,7 @@ function dinero(numero) {
   });
 }
 
-// ESTA FUNCIÓN LIMPIA LOS CAMPOS AUTOMÁTICAMENTE AL CARGAR LA PÁGINA
+// Limpia los campos de datos específicos y deja prellenados solo honorarios y originación
 window.onload = function() {
   if (document.getElementById("cliente")) document.getElementById("cliente").value = "";
   if (document.getElementById("subcuenta")) document.getElementById("subcuenta").value = "";
@@ -13,7 +13,6 @@ window.onload = function() {
   if (document.getElementById("mensual")) document.getElementById("mensual").value = "";
   if (document.getElementById("meses")) document.getElementById("meses").value = "";
   
-  // Mantiene SOLAMENTE los valores estándar prellenados
   if (document.getElementById("honorarios")) document.getElementById("honorarios").value = "15";
   if (document.getElementById("originacion")) document.getElementById("originacion").value = "4500";
 };
@@ -29,7 +28,7 @@ function generarResumen() {
   const porcentaje = parseFloat(document.getElementById("honorarios") ? document.getElementById("honorarios").value : 15) || 15;
   const originacion = parseFloat(document.getElementById("originacion") ? document.getElementById("originacion").value : 4500) || 0;
 
-  // 2. Cálculos financieros precisos
+  // 2. Cálculos financieros precisos paso a paso
   let pagoPeriodo = mensual;
   if (tipoPago === "Semanal") pagoPeriodo = mensual / 4;
   if (tipoPago === "Quincenal") pagoPeriodo = mensual / 2;
@@ -45,9 +44,8 @@ function generarResumen() {
   if (tiempoTexto === "") tiempoTexto = meses + " meses";
 
   const honorarios = credito * (porcentaje / 100);
-  const netoCredito = credito - honorarios;
-  // Resta exacta: Crédito - Honorarios - Gastos de Originación
-  const recibe = credito - honorarios - originacion; 
+  const netoCredito = credito - honorarios; // Subtotal tras honorarios
+  const recibe = netoCredito - originacion; // Total final tras originación
   const totalPagado = mensual * meses;
 
   // Fecha actual en formato día/mes/año
@@ -62,7 +60,7 @@ function generarResumen() {
   const html = `
   <!-- BOTÓN DE DESCARGA -->
   <div style="text-align: center; margin-bottom: 20px;">
-    <button onclick="descargarImagen()" style="background: #287a38; max-width: 350px; font-size: 18px; padding: 14px; border-radius: 10px;">
+    <button onclick="descargarImagen()" style="background: #287a38; max-width: 350px; font-size: 18px; padding: 14px; border-radius: 10px; cursor: pointer; color: white; border: none; font-weight: bold;">
       📥 DESCARGAR IMAGEN
     </button>
   </div>
@@ -82,7 +80,7 @@ function generarResumen() {
       </div>
     </div>
 
-    <!-- Banner Informativo con Nombre en 2º renglón y Fecha a la derecha -->
+    <!-- Banner Informativo -->
     <div style="background:#002349; color:white; border-radius:18px; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px;">
       <div style="display:flex; align-items:center; gap:12px;">
         <div style="background:white; color:#002349; width:26px; height:26px; border-radius:50%; font-weight:bold; font-style:italic; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">i</div>
@@ -171,7 +169,7 @@ function generarResumen() {
       </tr>
     </table>
 
-    <!-- Desglose de Costos -->
+    <!-- Desglose de Costos con ambas restas explicadas -->
     <div style="border:2px solid #002349; border-radius:16px; margin-top:18px;">
       <div style="background:#002349; color:white; padding:5px 18px; border-radius:10px 0 10px 0; font-size:14px; font-weight:bold; display:inline-block;">
         Desglose de Costos del Trámite
@@ -190,9 +188,9 @@ function generarResumen() {
           </td>
           <td class="col-2" style="border-bottom:1px dashed #ccc;"><div class="monto-red">-${dinero(honorarios)}</div></td>
           <td class="col-3" style="border-bottom:1px dashed #ccc;">
-            <div style="background:#fce8e6; border-radius:8px; padding:8px; text-align:center;">
+            <div style="background:#fce8e6; border-radius:8px; padding:6px 8px; text-align:center;">
               <div style="font-size:11px; color:#c5221f; font-weight:bold;">${dinero(credito)} - ${dinero(honorarios)} =</div>
-              <div style="font-size:20px; font-weight:800; color:#c5221f;">${dinero(netoCredito)}</div>
+              <div style="font-size:18px; font-weight:800; color:#c5221f;">${dinero(netoCredito)}</div>
             </div>
           </td>
         </tr>
@@ -208,7 +206,12 @@ function generarResumen() {
             </div>
           </td>
           <td class="col-2" style="border-bottom:none;"><div class="monto-red">-${dinero(originacion)}</div></td>
-          <td class="col-3" style="border-bottom:none; text-align:center;"><span style="font-size:30px; opacity:0.3;">🏛️</span></td>
+          <td class="col-3" style="border-bottom:none;">
+            <div style="background:#fce8e6; border-radius:8px; padding:6px 8px; text-align:center;">
+              <div style="font-size:11px; color:#c5221f; font-weight:bold;">${dinero(netoCredito)} - ${dinero(originacion)} =</div>
+              <div style="font-size:18px; font-weight:800; color:#287a38;">${dinero(recibe)}</div>
+            </div>
+          </td>
         </tr>
       </table>
     </div>
