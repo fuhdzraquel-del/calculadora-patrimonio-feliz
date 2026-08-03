@@ -1,126 +1,126 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f4f6f9;
+/* RESET Y ESTILOS GENERALES */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f6f9;
+  color: #333;
   padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .contenedor {
+  width: 100%;
   max-width: 900px;
-  margin: 0 auto;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.logo {
-  width: 120px;
-  margin-bottom: 10px;
-}
-
-header h1 {
-  margin: 0;
-  color: #003168;
-}
-
-header p {
-  margin: 5px 0 0 0;
-  color: #666;
-  font-weight: bold;
-}
-
+/* FORMULARIO DE ENTRADA */
 .formulario {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   margin-bottom: 30px;
+  border-top: 5px solid #002349;
 }
 
 .formulario h2 {
-  margin-top: 0;
-  color: #003168;
-  border-bottom: 2px solid #f0f0f0;
-  padding-bottom: 10px;
+  color: #002349;
   margin-bottom: 20px;
+  font-size: 22px;
+  text-align: center;
 }
 
 .fila {
-  margin-bottom: 15px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  margin-bottom: 15px;
 }
 
 .fila label {
-  font-weight: bold;
-  color: #333;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #444;
+  font-size: 14px;
 }
 
 .fila input, .fila select {
-  padding: 10px 14px;
+  padding: 10px 12px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 50%;
+  border-radius: 6px;
   font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.fila input:focus, .fila select:focus {
+  border-color: #002349;
 }
 
 button {
   width: 100%;
-  padding: 16px;
-  background: #003168;
+  background: #002349;
   color: white;
   border: none;
-  font-size: 17px;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
   font-weight: bold;
-  border-radius: 10px;
   cursor: pointer;
-  margin-top: 15px;
+  transition: background 0.3s;
+  margin-top: 10px;
 }
 
 button:hover {
-  background: #00224a;
+  background: #001733;
 }
 
-/* --- INFOGRAFÍA EN CASO DE ÉXITO --- */
+/* INFOGRAFÍA CANVAS (PLANTILLA PARA DESCARGA) */
 .infografia-canvas {
-  background-color: #ffffff;
-  border: 12px solid #002349;
-  border-radius: 20px;
-  padding: 25px 20px;
-  position: relative;
-  box-sizing: border-box;
-  margin-top: 20px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  position: relative; /* Mantiene la referencia para el círculo absoluto */
+  overflow: hidden;
+  width: 100%;
+  min-height: 820px;
 }
 
+/* TABLAS DE INFOGRAFÍA */
 .tabla-infografia {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 10px;
 }
 
 .tabla-infografia td {
   padding: 10px 8px;
-  border-bottom: 1px dashed #cccccc;
   vertical-align: middle;
 }
 
-.col-1 { width: 38%; }
-.col-2 {
+.col-1 {
   width: 32%;
-  border-left: 1px dashed #cccccc;
-  padding-left: 12px !important;
 }
+
+.col-2 {
+  width: 28%;
+  text-align: center;
+}
+
 .col-3 {
-  width: 30%;
-  border-left: 1px dashed #cccccc;
-  padding-left: 12px !important;
+  width: 40%;
   font-size: 12px;
-  color: #444;
+  color: #555;
   line-height: 1.3;
 }
 
+/* ELEMENTOS VISUALES */
 .flex-title {
   display: flex;
   align-items: center;
@@ -128,49 +128,52 @@ button:hover {
 }
 
 .icon-circle {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
+  border: 2px solid #002349;
   border-radius: 50%;
-  border: 2px solid #287a38;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   font-size: 18px;
+  color: #002349;
+  flex-shrink: 0;
 }
 
 .title-text {
-  font-size: 15px;
-  font-weight: 800;
+  font-weight: 700;
   color: #002349;
+  font-size: 13px;
   line-height: 1.2;
 }
 
 .monto-green {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
   color: #287a38;
 }
 
 .monto-red {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
   color: #c5221f;
 }
 
+/* CÍRCULO RESUMEN INFERIOR DERECHO CORREGIDO */
 .circle-summary {
   position: absolute;
-  bottom: 35px;
-  right: 20px;
-  width: 210px;
-  height: 210px;
-  border-radius: 50%;
-  border: 4px solid #287a38;
+  right: 25px;
+  bottom: 15px; /* Bajado para despejar por completo la 2ª fila de la originación */
+  width: 220px;
+  height: 220px;
   background: #ffffff;
+  border: 4px solid #287a38;
+  border-radius: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  z-index: 5;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  z-index: 10;
 }
