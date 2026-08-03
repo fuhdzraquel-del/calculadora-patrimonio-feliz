@@ -6,15 +6,17 @@ function dinero(numero) {
 }
 
 function generarResumen() {
-  const cliente = document.getElementById("cliente") ? document.getElementById("cliente").value : "Cliente";
+  // 1. Lectura de campos del formulario
+  const cliente = document.getElementById("cliente") ? document.getElementById("cliente").value.trim() : "Cliente";
   const subcuenta = parseFloat(document.getElementById("subcuenta") ? document.getElementById("subcuenta").value : 0) || 0;
   const credito = parseFloat(document.getElementById("credito") ? document.getElementById("credito").value : 0) || 0;
   const mensual = parseFloat(document.getElementById("mensual") ? document.getElementById("mensual").value : 0) || 0;
   const meses = parseFloat(document.getElementById("meses") ? document.getElementById("meses").value : 0) || 0;
   const tipoPago = document.getElementById("tipoPago") ? document.getElementById("tipoPago").value : "Semanal";
   const porcentaje = parseFloat(document.getElementById("honorarios") ? document.getElementById("honorarios").value : 15) || 15;
-  const originacion = parseFloat(document.getElementById("originacion") ? document.getElementById("originacion").value : 4500) || 4500;
+  const originacion = parseFloat(document.getElementById("originacion") ? document.getElementById("originacion").value : 4500) || 0;
 
+  // 2. Cálculos financieros precisos
   let pagoPeriodo = mensual;
   if (tipoPago === "Semanal") pagoPeriodo = mensual / 4;
   if (tipoPago === "Quincenal") pagoPeriodo = mensual / 2;
@@ -31,9 +33,19 @@ function generarResumen() {
 
   const honorarios = credito * (porcentaje / 100);
   const netoCredito = credito - honorarios;
-  const recibe = credito - honorarios - originacion;
+  // RESTA EXACTA: Crédito - Honorarios - Gastos de Originación
+  const recibe = credito - honorarios - originacion; 
   const totalPagado = mensual * meses;
 
+  // Fecha actual en formato día/mes/año
+  const hoy = new Date();
+  const fechaTexto = hoy.toLocaleDateString("es-MX", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
+
+  // 3. Renderizado HTML de la Infografía
   const html = `
   <!-- BOTÓN DE DESCARGA -->
   <div style="text-align: center; margin-bottom: 20px;">
@@ -57,11 +69,17 @@ function generarResumen() {
       </div>
     </div>
 
-    <!-- Banner Informativo -->
-    <div style="background:#002349; color:white; border-radius:30px; padding:10px 20px; display:flex; align-items:center; gap:12px; margin-bottom:20px;">
-      <div style="background:white; color:#002349; width:24px; height:24px; border-radius:50%; font-weight:bold; font-style:italic; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">i</div>
-      <div style="font-size:13px; line-height:1.2;">
-        Este resumen te muestra de forma clara cuánto recibirás, cuánto pagarás y los costos del trámite para <b>${cliente}</b>.
+    <!-- Banner Informativo con Nombre en 2º renglón y Fecha a la derecha -->
+    <div style="background:#002349; color:white; border-radius:18px; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="background:white; color:#002349; width:26px; height:26px; border-radius:50%; font-weight:bold; font-style:italic; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;">i</div>
+        <div style="font-size:13px; line-height:1.4;">
+          Este resumen te muestra de forma clara cuánto recibirás, cuánto pagarás y los costos del trámite.<br>
+          <span style="font-size:15px; color:#ffd700;"><b>Cliente:</b> <u>${cliente !== "" ? cliente : "Cliente"}</u></span>
+        </div>
+      </div>
+      <div style="font-size:12px; opacity:0.9; text-align:right; white-space:nowrap; background:rgba(255,255,255,0.1); padding:4px 10px; border-radius:8px;">
+        📅 <b>Fecha:</b> ${fechaTexto}
       </div>
     </div>
 
@@ -169,14 +187,14 @@ function generarResumen() {
         <tr>
           <td class="col-1" style="border-bottom:none;">
             <div class="flex-title">
-              <div class="icon-circle">👛</div>
+              <div class="icon-circle" style="border-color:#c5221f; color:#c5221f;">👛</div>
               <div>
-                <b style="color:#287a38; font-size:13px;">Mas Gastos de Originación</b>
+                <b style="color:#c5221f; font-size:13px;">Menos Gastos de Originación</b>
                 <div style="font-size:11px; color:#666;">Inscripción del trámite ante la institución.</div>
               </div>
             </div>
           </td>
-          <td class="col-2" style="border-bottom:none;"><div class="monto-green">${dinero(originacion)}</div></td>
+          <td class="col-2" style="border-bottom:none;"><div class="monto-red">-${dinero(originacion)}</div></td>
           <td class="col-3" style="border-bottom:none; text-align:center;"><span style="font-size:30px; opacity:0.3;">🏛️</span></td>
         </tr>
       </table>
@@ -203,10 +221,10 @@ function generarResumen() {
     <!-- Círculo Verde Derecha -->
     <div class="circle-summary">
       <div style="font-size:17px; font-weight:800; color:#002349;">Recibes:</div>
-      <div style="font-size:26px; font-weight:900; color:#287a38; margin:2px 0;">${dinero(recibe)}</div>
+      <div style="font-size:25px; font-weight:900; color:#287a38; margin:2px 0;">${dinero(recibe)}</div>
       <div style="width:75%; height:2px; background:#287a38; margin:4px 0;"></div>
       <div style="font-size:14px; font-weight:800; color:#002349;">Pagas solo:</div>
-      <div style="font-size:22px; font-weight:900; color:#287a38;">${dinero(totalPagado)}</div>
+      <div style="font-size:21px; font-weight:900; color:#287a38;">${dinero(totalPagado)}</div>
     </div>
 
     <!-- Pie de página -->
@@ -227,16 +245,17 @@ function generarResumen() {
 // FUNCIÓN PARA DESCARGAR COMO IMAGEN PNG
 function descargarImagen() {
   const elemento = document.getElementById("infografia-para-descargar");
-  const cliente = document.getElementById("cliente") ? document.getElementById("cliente").value : "Cliente";
+  const cliente = document.getElementById("cliente") ? document.getElementById("cliente").value.trim() : "Cliente";
 
   if (!elemento) return;
 
   html2canvas(elemento, {
-    scale: 2, // Alta resolución para que se vea nítida
+    scale: 2,
     useCORS: true
   }).then(canvas => {
     const enlace = document.createElement("a");
-    enlace.download = `Resumen_Infonavit_${cliente.replace(/\s+/g, '_')}.png`;
+    const nombreLimpio = cliente ? cliente.replace(/\s+/g, '_') : 'Cliente';
+    enlace.download = `Resumen_Infonavit_${nombreLimpio}.png`;
     enlace.href = canvas.toDataURL("image/png");
     enlace.click();
   });
