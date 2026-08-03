@@ -5,6 +5,19 @@ function dinero(numero) {
   });
 }
 
+// ESTA FUNCIÓN LIMPIA LOS CAMPOS AUTOMÁTICAMENTE AL CARGAR LA PÁGINA
+window.onload = function() {
+  if (document.getElementById("cliente")) document.getElementById("cliente").value = "";
+  if (document.getElementById("subcuenta")) document.getElementById("subcuenta").value = "";
+  if (document.getElementById("credito")) document.getElementById("credito").value = "";
+  if (document.getElementById("mensual")) document.getElementById("mensual").value = "";
+  if (document.getElementById("meses")) document.getElementById("meses").value = "";
+  
+  // Mantiene SOLAMENTE los valores estándar prellenados
+  if (document.getElementById("honorarios")) document.getElementById("honorarios").value = "15";
+  if (document.getElementById("originacion")) document.getElementById("originacion").value = "4500";
+};
+
 function generarResumen() {
   // 1. Lectura de campos del formulario
   const cliente = document.getElementById("cliente") ? document.getElementById("cliente").value.trim() : "Cliente";
@@ -33,7 +46,7 @@ function generarResumen() {
 
   const honorarios = credito * (porcentaje / 100);
   const netoCredito = credito - honorarios;
-  // RESTA EXACTA: Crédito - Honorarios - Gastos de Originación
+  // Resta exacta: Crédito - Honorarios - Gastos de Originación
   const recibe = credito - honorarios - originacion; 
   const totalPagado = mensual * meses;
 
