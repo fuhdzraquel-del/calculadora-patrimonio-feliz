@@ -56,7 +56,7 @@ function generarResumen() {
     year: "numeric"
   });
 
-  // 3. Renderizado HTML de la Infografía Original (Con altura expandida para despejar el círculo)
+  // 3. Renderizado HTML de la Infografía Profesional Original
   const html = `
   <!-- BOTÓN DE DESCARGA -->
   <div style="text-align: center; margin-bottom: 20px;">
@@ -66,7 +66,7 @@ function generarResumen() {
   </div>
 
   <!-- INFOGRAFÍA PARA EL CLIENTE -->
-  <div id="infografia-para-descargar" class="infografia-canvas" style="position: relative; min-height: 960px; padding-bottom: 40px;">
+  <div id="infografia-para-descargar" class="infografia-canvas" style="position: relative;">
     
     <!-- Encabezado -->
     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:15px;">
@@ -169,8 +169,8 @@ function generarResumen() {
       </tr>
     </table>
 
-    <!-- Desglose de Costos (100% Completo Original) -->
-    <div style="border:2px solid #002349; border-radius:16px; margin-top:18px; margin-bottom:30px;">
+    <!-- Desglose de Costos (Diseño Original Intacto) -->
+    <div style="border:2px solid #002349; border-radius:16px; margin-top:18px;">
       <div style="background:#002349; color:white; padding:5px 18px; border-radius:10px 0 10px 0; font-size:14px; font-weight:bold; display:inline-block;">
         Desglose de Costos del Trámite
       </div>
@@ -217,7 +217,7 @@ function generarResumen() {
     </div>
 
     <!-- Sección Inferior -->
-    <div style="margin-top:18px; width:60%;">
+    <div style="margin-top:18px; width:70%;">
       <div style="background:#002349; color:white; border-radius:12px; padding:4px 12px; display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:bold; margin-bottom:10px;">
         ✓ En resumen:
       </div>
@@ -234,17 +234,17 @@ function generarResumen() {
       </div>
     </div>
 
-    <!-- Círculo Verde Ubicado en la Zona Inferior Totalmente Libre de la Tabla -->
-    <div class="circle-summary" style="position: absolute; right: 25px; bottom: 20px;">
-      <div style="font-size:17px; font-weight:800; color:#002349;">Recibes:</div>
-      <div style="font-size:25px; font-weight:900; color:#287a38; margin:2px 0;">${dinero(recibe)}</div>
-      <div style="width:75%; height:2px; background:#287a38; margin:4px 0;"></div>
-      <div style="font-size:14px; font-weight:800; color:#002349;">Pagas solo:</div>
-      <div style="font-size:21px; font-weight:900; color:#287a38;">${dinero(totalPagado)}</div>
+    <!-- CÍRCULO REDUCIDO A 160px CON LETRAS MÁS GRANDES Y PROPORCIONALES -->
+    <div class="circle-summary" style="position: absolute; right: 20px; bottom: 15px; width: 160px; height: 160px; border-width: 3px;">
+      <div style="font-size: 15px; font-weight: 800; color: #002349; line-height: 1.1;">Recibes:</div>
+      <div style="font-size: 21px; font-weight: 900; color: #287a38; margin: 1px 0;">${dinero(recibe)}</div>
+      <div style="width: 80%; height: 2px; background: #287a38; margin: 3px 0;"></div>
+      <div style="font-size: 13px; font-weight: 800; color: #002349; line-height: 1.1;">Pagas solo:</div>
+      <div style="font-size: 18px; font-weight: 900; color: #287a38;">${dinero(totalPagado)}</div>
     </div>
 
     <!-- Pie de página -->
-    <div style="border-top:1px solid #e0e0e0; margin-top:25px; padding-top:8px; display:flex; justify-content:space-between; align-items:center; font-size:10px; color:#555; width:60%;">
+    <div style="border-top:1px solid #e0e0e0; margin-top:20px; padding-top:8px; display:flex; justify-content:space-between; align-items:center; font-size:10px; color:#555; width:70%;">
       <div>🛡️ Estamos contigo en todo el proceso.</div>
       <div>🤝 Asesoría profesional.</div>
     </div>
