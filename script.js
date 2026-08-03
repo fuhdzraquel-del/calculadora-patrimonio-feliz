@@ -28,7 +28,7 @@ function generarResumen() {
   const porcentaje = parseFloat(document.getElementById("honorarios") ? document.getElementById("honorarios").value : 15) || 15;
   const originacion = parseFloat(document.getElementById("originacion") ? document.getElementById("originacion").value : 4500) || 0;
 
-  // 2. Cálculos financieros precisos
+  // 2. Cálculos financieros precisos paso a paso
   let pagoPeriodo = mensual;
   if (tipoPago === "Semanal") pagoPeriodo = mensual / 4;
   if (tipoPago === "Quincenal") pagoPeriodo = mensual / 2;
@@ -44,8 +44,8 @@ function generarResumen() {
   if (tiempoTexto === "") tiempoTexto = meses + " meses";
 
   const honorarios = credito * (porcentaje / 100);
-  const netoCredito = credito - honorarios;
-  const recibe = netoCredito - originacion;
+  const netoCredito = credito - honorarios; // Subtotal tras honorarios
+  const recibe = netoCredito - originacion; // Total final tras originación
   const totalPagado = mensual * meses;
 
   // Fecha actual en formato día/mes/año
@@ -56,7 +56,7 @@ function generarResumen() {
     year: "numeric"
   });
 
-  // 3. Renderizado HTML de la Infografía (Diseño Profesional Original)
+  // 3. Renderizado HTML de la Infografía
   const html = `
   <!-- BOTÓN DE DESCARGA -->
   <div style="text-align: center; margin-bottom: 20px;">
@@ -66,7 +66,7 @@ function generarResumen() {
   </div>
 
   <!-- INFOGRAFÍA PARA EL CLIENTE -->
-  <div id="infografia-para-descargar" class="infografia-canvas" style="position: relative;">
+  <div id="infografia-para-descargar" class="infografia-canvas">
     
     <!-- Encabezado -->
     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:15px;">
@@ -169,7 +169,7 @@ function generarResumen() {
       </tr>
     </table>
 
-    <!-- Desglose de Costos (Estructura Original Completa) -->
+    <!-- Desglose de Costos con ambas restas explicadas -->
     <div style="border:2px solid #002349; border-radius:16px; margin-top:18px;">
       <div style="background:#002349; color:white; padding:5px 18px; border-radius:10px 0 10px 0; font-size:14px; font-weight:bold; display:inline-block;">
         Desglose de Costos del Trámite
@@ -216,7 +216,7 @@ function generarResumen() {
       </table>
     </div>
 
-    <!-- Sección Inferior -->
+    <!-- Sección Inferior + Círculo -->
     <div style="margin-top:18px; width:62%;">
       <div style="background:#002349; color:white; border-radius:12px; padding:4px 12px; display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:bold; margin-bottom:10px;">
         ✓ En resumen:
@@ -234,8 +234,8 @@ function generarResumen() {
       </div>
     </div>
 
-    <!-- Círculo Verde Bajado Únicamente a la Parte Inferior Derecha -->
-    <div class="circle-summary" style="position: absolute; right: 25px; bottom: 5px;">
+    <!-- Círculo Verde Derecha -->
+    <div class="circle-summary">
       <div style="font-size:17px; font-weight:800; color:#002349;">Recibes:</div>
       <div style="font-size:25px; font-weight:900; color:#287a38; margin:2px 0;">${dinero(recibe)}</div>
       <div style="width:75%; height:2px; background:#287a38; margin:4px 0;"></div>
