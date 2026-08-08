@@ -212,16 +212,16 @@ function generarResumen() {
               <div>
                 <b style="color:#c5221f; font-size:12px;">Menos Gastos de Originación</b>
                 <div style="font-size:10px; color:#64748b;"> Inscripción del trámite ante la institución.<br>
-                 <span style="font-size:9px; color:#64748b;">
-                  + IVA, según corresponda<br>
-                + Cargo por domiciliación / terminal, según forma de pago
-                </span>
               </div>
             </div>
           </td>
           <td style="padding: 10px; font-size:18px; font-weight:800; color:#c5221f; text-align:center; border-left: 1px solid #f1f5f9; border-right: 1px solid #f1f5f9;">
             -${dinero(originacion)}
           </td>
+          <span style="font-size:9px; color:#64748b;">
+                  + IVA, según corresponda<br>
+                + Cargo por domiciliación / terminal, según forma de pago
+                </span>
           <td style="padding: 10px 15px;">
             <div style="background:#f0fdf4; border-radius:8px; padding:5px 8px; text-align:center; border: 1px solid #dcfce7;">
               <div style="font-size:10px; color:#166534; font-weight:bold;">${dinero(netoCredito)} - ${dinero(originacion)} =</div>
