@@ -215,13 +215,16 @@ function generarResumen() {
               </div>
             </div>
           </td>
+
+          <!-- SEGUNDA COLUMNA: MONTO ROJO CON EL TEXTO EXACTO ABAJO -->
           <td style="padding: 10px; text-align:center; border-left: 1px solid #f1f5f9; border-right: 1px solid #f1f5f9;">
             <div style="font-size:18px; font-weight:800; color:#c5221f;">-${dinero(originacion)}</div>
-            <div style="font-size:9px; color:#64748b; margin-top:3px; line-height:1.2;">
+            <div style="font-size:9px; color:#64748b; margin-top:3px; line-height:1.2; font-weight:normal;">
               + IVA, según corresponda<br>
               + Cargo por domiciliación / terminal, según forma de pago
             </div>
           </td>
+
           <td style="padding: 10px 15px;">
             <div style="background:#f0fdf4; border-radius:8px; padding:5px 8px; text-align:center; border: 1px solid #dcfce7;">
               <div style="font-size:10px; color:#166534; font-weight:bold;">${dinero(netoCredito)} - ${dinero(originacion)} =</div>
