@@ -211,7 +211,13 @@ function generarResumen() {
               <div style="font-size:18px; width:32px; height:32px; border:2px solid #c5221f; color:#c5221f; border-radius:50%; display:flex; align-items:center; justify-content:center;">👛</div>
               <div>
                 <b style="color:#c5221f; font-size:12px;">Menos Gastos de Originación</b>
-                <div style="font-size:10px; color:#64748b;">Inscripción del trámite ante la institución.</div>
+                <div style="font-size:10px; color:#64748b;">
+  Inscripción del trámite ante la institución.<br>
+  <span style="font-size:9px; color:#64748b;">
+    + IVA, según corresponda<br>
+    + Cargo por domiciliación / terminal, según forma de pago
+  </span>
+</div>
               </div>
             </div>
           </td>
